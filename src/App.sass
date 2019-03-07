@@ -1,0 +1,211 @@
+// @import 'https://fonts.googleapis.com/css?family=Roboto+Slab:400,700'
+
+$color-theme:				#488bf4
+$color-heading:			#363636
+$color-content:			#858585
+$color-background:	#f0f2f2
+$color-footer:			black
+$color-news:				#4549a8
+$color-community:		#dc563f
+$color-release:			#60c645
+$color-border:			#c0c0c8
+$font-content:			"Roboto Slab", serif
+
+html
+	font-size: 1rem
+body
+	background: $color-background
+.participants
+  border-radius: 0.25rem
+  overflow: hidden
+  &__list
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    margin-top: 15px
+    margin-left: 15px
+
+  .participant
+    box-sizing: border-box
+    color: $color-content
+    border-left: 0.25rem solid $color-content
+    background: white
+    width: 100%
+    min-width: 0rem
+    height: 3rem
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12)
+    &.winner
+      color: $color-release
+      border-color: $color-release
+    &.loser
+      color: $color-community
+      border-color: $color-community
+    &:not(:last-child)
+      border-bottom: thin solid $color-background
+    span
+      margin: 0 1.25rem
+      line-height: 3
+      font-size: 1rem
+      font-family: "Roboto Slab"
+
+
+.bracket
+  display: flex
+  flex-flow: row nowrap
+  overflow: auto
+  width: 100%
+  scroll-snap-type: x proximity
+  margin-top: 30px
+.round
+  display: grid
+  grid-row-gap: 4rem
+  flex: none
+  vertical-align: middle
+  width: 100%
+  margin: auto
+  scroll-snap-align: start
+  &:not(:first-of-type)
+    margin: 0
+    .winners
+      height: 100%
+      .matchup
+        display: grid
+        align-items: center
+      div.connector 
+        height: 100%
+        align-items: center
+        .merger
+          height: 56%
+        .line
+          height: 0
+
+  .winners
+    height: 16rem
+    display: grid
+    grid-template-columns: 3fr 1fr
+    & > div
+      display: grid
+      grid-row-gap: 4rem
+      vertical-align: middle
+      &.matchups
+
+        .matchup
+          // margin-bottom: 4rem
+          &:last-child
+            // margin-bottom: 0 !important
+          
+      &.connector
+        display: grid
+        grid-template-columns: 1fr 1fr
+        align-self: center
+        &.filled
+          .line, &.bottom .merger:after, &.top .merger:before
+            border-color: $color-release
+        .line, .merger
+          box-sizing: border-box
+          width: 100%
+          display: inline-block
+          vertical-align: top
+        .line
+          border-bottom: thin solid $color-border
+          height: 5rem
+        .merger
+          position: relative
+          height: 10rem
+          &:before, &:after
+            content: ""
+            display: block
+            box-sizing: border-box
+            width: 100%
+            height: 50%
+            border: 0 solid
+            border-color: $color-border
+          &:before
+            border-right-width: thin
+            border-top-width: thin
+          &:after
+            border-right-width: thin
+            border-bottom-width: thin
+  &.quarterfinals
+    .winners
+      &:not(:last-child)
+        margin-bottom: 2rem
+      .matchups
+        .matchup
+          &:not(:last-child)
+            margin-bottom: 2rem
+          .participants
+            .participant
+  &.semifinals
+    .winners
+      .matchups
+        .matchup
+          &:not(:last-child)
+            margin-bottom: 10rem
+          .participants
+            .participant
+      .connector
+        .merger
+          height: 16rem
+        .line
+          height: 8rem
+  &.finals
+    .winners
+      .matchups
+        .matchup
+          .participants
+            .participant
+      .connector
+        .merger
+          height: 3rem
+        .line
+          height: 1.5rem
+  &.champion
+
+.modal 
+  &.open
+    display: block
+  display: none
+  background: rgba(0, 0, 0, .3)
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  & .modal-title
+    border-bottom: solid 1px lightgrey
+    padding: 15px 10px
+    .close
+      position: absolute
+      top: 10px
+      right: 15px
+  & .modal-body
+    position: absolute
+    top: 25vh
+    background: white
+    max-width: 100vw
+    width: 400px
+    height: 300px
+  & .modal-content
+    padding: 15px 10px
+    .actions
+      text-align: right
+      .btn
+        margin-left: 10px
+
+.input-group
+  height: 35px
+  label
+    margin-right: 10px
+  input
+    line-height: 1
+    height: 1
+    padding: 5px 
+    line-height: 90%
+    border-width: 0 0 2px 0
+
+.btn
+  width: 150px
+  padding: 10px 15px
+  background: white
+  border: solid 2px lightgrey
+  font-family: "Roboto Slab"
